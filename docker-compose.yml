@@ -1,0 +1,22 @@
+# Versão do Docker Compose. '3.8' é uma versão moderna e estável.
+version: "3.8"
+
+# Definição dos serviços (contêineres) que compõem a sua aplicação.
+services:
+  # Serviço da sua API FastAPI
+  api:
+    # Constrói a imagem a partir do Dockerfile no diretório atual ('.').
+    # O Docker Compose irá procurar e usar o seu arquivo 'Dockerfile'.
+    build: .
+    # Define um nome amigável para o contêiner para fácil identificação.
+    container_name: gestao-escolar-api
+    # Mapeia a porta 8000 do seu computador para a porta 8000 do contêiner,
+    # onde a aplicação está rodando.
+    ports:
+      - "8000:8000"
+    # Monta o diretório atual ('.') no diretório '/app' dentro do contêiner.
+    # Isso é crucial para o desenvolvimento: qualquer alteração que você fizer
+    # no seu código local será refletida instantaneamente dentro do contêiner,
+    # e o '--reload' (do seu Dockerfile) reiniciará o servidor automaticamente.
+    volumes:
+      - .:/app
